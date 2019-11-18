@@ -4,18 +4,19 @@ project (rt2d)
 
 # delete CMakeCache.txt from the build directory when you edit these options
 ####################################################################
-OPTION(MAKE_START "Make RT2D start application" ON)
-OPTION(MAKE_DEMO "Make RT2D demo (tests) application" ON)
-OPTION(MAKE_CANVAS_DEMO "Make RT2D Canvas demo (tests) application" ON)
-OPTION(MAKE_FLOCKING "Make flocking application" ON)
-OPTION(MAKE_BASIC3D "Make basic3D application" ON)
-OPTION(MAKE_NOISE "Make Perlin Noise application" ON)
-OPTION(MAKE_GEOMETRIC "Make GeoMetric application" ON)
-OPTION(MAKE_SHADY "Make custom Shader application" ON)
-OPTION(MAKE_WOLFENSTEIN "Make Wolfenstein3D raycasting application" ON)
-OPTION(MAKE_COLLISION "Make Collision application" ON)
-OPTION(MAKE_DEBUGDRAW "Make DebugDraw application" ON)
-OPTION(MAKE_RAYCAST "Make Raycast application" ON)
+OPTION(MAKE_GAME "Make RT2D game application" ON)
+OPTION(MAKE_START "Make RT2D start application" OFF)
+OPTION(MAKE_DEMO "Make RT2D demo (tests) application" OFF)
+OPTION(MAKE_CANVAS_DEMO "Make RT2D Canvas demo (tests) application" OFF)
+OPTION(MAKE_FLOCKING "Make flocking application" OFF)
+OPTION(MAKE_BASIC3D "Make basic3D application" OFF)
+OPTION(MAKE_NOISE "Make Perlin Noise application" OFF)
+OPTION(MAKE_GEOMETRIC "Make GeoMetric application" OFF)
+OPTION(MAKE_SHADY "Make custom Shader application" OFF)
+OPTION(MAKE_WOLFENSTEIN "Make Wolfenstein3D raycasting application" OFF)
+OPTION(MAKE_COLLISION "Make Collision application" OFF)
+OPTION(MAKE_DEBUGDRAW "Make DebugDraw application" OFF)
+OPTION(MAKE_RAYCAST "Make Raycast application" OFF)
 
 OPTION(USE_RS232 "Use RS232 library" OFF)
 OPTION(MAKE_SERIAL "Make serial application" OFF)
@@ -167,6 +168,28 @@ IF(MAKE_START)
 		DESTINATION ${CMAKE_BINARY_DIR}
 	)
 ENDIF()
+
+####################################################################
+# game                                                            #
+####################################################################
+IF(MAKE_GAME)
+	add_executable(game
+		game/main.cpp
+		game/myentity.cpp
+		game/myentity.h
+		game/myscene.cpp
+		game/myscene.h
+	)
+	target_link_libraries(start
+		${ALL_GRAPHICS_LIBS}
+	)
+	# Copy assets to the build directory
+	file(
+		COPY game/assets
+		DESTINATION ${CMAKE_BINARY_DIR}
+	)
+ENDIF()
+
 
 ####################################################################
 # demo                                                             #
