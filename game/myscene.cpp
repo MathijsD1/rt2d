@@ -14,22 +14,22 @@ MyScene::MyScene() : Scene()
 	// start the timer.
 	t.start();
 
-	spaceship = new Spaceship(Point(SWIDTH / 2, SHEIGHT / 2));
+	arenaBoidA = new ArenaBoid(RGBAColor(255,0,0));
+	this->addChild(arenaBoidA);
 
-	this->addChild(spaceship);
+	arenaBoidB = new ArenaBoid(RGBAColor(0, 255, 0));
+	this->addChild(arenaBoidB);
 }
 
 
 MyScene::~MyScene()
 {
-	delete spaceship;
+	delete arenaBoidA;
+	delete arenaBoidB;
 }
 
 void MyScene::update(float deltaTime)
 {
-	if (t.seconds() > 0.0333f) {
-		RGBAColor color = spaceship->sprite()->color;
-		spaceship->sprite()->color = Color::rotate(color, 0.01f);
-		t.start();
-	}
+	arenaBoidA->handleInput(1);
+	arenaBoidB->handleInput(2);
 }
