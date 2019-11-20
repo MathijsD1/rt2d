@@ -179,8 +179,10 @@ IF(MAKE_GAME)
 		game/myentity.h
 		game/myscene.cpp
 		game/myscene.h
+    game/spaceship.cpp
+    game/spaceship.h
 	)
-	target_link_libraries(start
+	target_link_libraries(game
 		${ALL_GRAPHICS_LIBS}
 	)
 	# Copy assets to the build directory
