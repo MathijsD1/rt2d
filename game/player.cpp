@@ -1,33 +1,35 @@
-#include "arenaboid.h"
+#include "player.h"
 
 //delta time
 float dTime;
 
 
 
-ArenaBoid::ArenaBoid(RGBAColor boidColor) : Entity()
+Player::Player(RGBAColor boidColor) : Entity()
 {
 	pos = Point(Random().getRandomBetween(0, SWIDTH), Random().getRandomBetween(0, SHEIGHT));
 
-	this->addSprite("assets/boid.tga");
+	this->addSprite("assets/player.tga");
 	this->sprite()->filter(1);
 	this->sprite()->color = boidColor;
 
-	float scale = 0.85f;
+	float scale = 1.3f;
 	this->scale = Point3(scale, scale, scale);
 
 
 	vel = Vector2(0, 0);
 	accel = Vector2(0, 0);
 
+	std::cout << "Created new player" << std::endl;
+
 }
 
-ArenaBoid::~ArenaBoid()
+Player::~Player()
 {
 
 }
 
-void ArenaBoid::handleInput(float inputSet)
+void Player::handleInput(float inputSet)
 {
 	//Default input
 	if (inputSet == 1) 
@@ -58,7 +60,7 @@ void ArenaBoid::handleInput(float inputSet)
 	}
 }
 
-void ArenaBoid::update(float deltaTime)
+void Player::update(float deltaTime)
 {
 	float width = SWIDTH;
 	float height = SHEIGHT;
@@ -81,18 +83,18 @@ void ArenaBoid::update(float deltaTime)
 	accel *= 0;
 }
 
-void ArenaBoid::applyForce(Vector2 force)
+void Player::applyForce(Vector2 force)
 {
 	Vector2 f = force;
 	accel += f;
 }
 
-void ArenaBoid::turn(float a)
+void Player::turn(float a)
 {
 	heading += a;
 }
 
-void ArenaBoid::thrust(float speed = 1)
+void Player::thrust(float speed = 1)
 {
 	float angle = heading - PI / 2;
 	Vector2 force = Vector2(cos(angle), sin(angle));
@@ -101,7 +103,7 @@ void ArenaBoid::thrust(float speed = 1)
 	thrusting = true;
 }
 
-void ArenaBoid::wrapEdges(float sWidth, float sHeight) {
+void Player::wrapEdges(float sWidth, float sHeight) {
 	float buffer = r * 2;
 
 	if (pos.x > sWidth + buffer) {

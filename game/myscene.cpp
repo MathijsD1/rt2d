@@ -17,24 +17,24 @@ MyScene::MyScene() : Scene()
 	// start the timer.
 	t.start();
 
-	arenaBoidA = new ArenaBoid(RGBAColor(255,0,0));
-	this->addChild(arenaBoidA);
+	playerA = new Player(RGBAColor(255,0,0));
+	this->addChild(playerA);
 	
 
-	arenaBoidB = new ArenaBoid(RGBAColor(0, 255, 0));
-	this->addChild(arenaBoidB);
+	playerB = new Player(RGBAColor(0, 255, 0));
+	this->addChild(playerB);
 }
 
 
 MyScene::~MyScene()
 {
-	delete arenaBoidA;
-	delete arenaBoidB;
+	delete playerA;
+	delete playerB;
 }
 
 void MyScene::update(float deltaTime)
 {
-	arenaBoidA->handleInput(1);
-	arenaBoidB->handleInput(2);
+	playerA->handleInput(1);
+	playerB->handleInput(2);
 
 }

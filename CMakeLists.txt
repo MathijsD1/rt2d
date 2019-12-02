@@ -177,8 +177,8 @@ IF(MAKE_GAME)
 		game/main.cpp
 		game/myscene.cpp
 		game/myscene.h
-    game/arenaboid.cpp
-    game/arenaboid.h
+    game/player.cpp
+    game/player.h
     game/random.cpp
     game/random.h
 	)

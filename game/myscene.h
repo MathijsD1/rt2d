@@ -11,7 +11,7 @@
 
 #include <rt2d/scene.h>
 
-#include "arenaboid.h"
+#include "player.h"
 
 /// @brief The MyScene class is the Scene implementation.
 class MyScene : public Scene
@@ -29,8 +29,8 @@ public:
 
 private:
 	/// @brief the player controlled spaceship.
-	ArenaBoid* arenaBoidA;
-	ArenaBoid* arenaBoidB;
+	Player* playerA;
+	Player* playerB;
 
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;

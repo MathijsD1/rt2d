@@ -1,6 +1,6 @@
 
-#ifndef ARENABOID_H
-#define ARENABOID_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <rt2d/entity.h>
 
@@ -9,13 +9,13 @@
 
 
 
-class ArenaBoid : public Entity
+class Player : public Entity
 {
 public:
 	/// @brief Constructor
-	ArenaBoid(RGBAColor boidColor = RGBAColor(255,0,0));
+	Player(RGBAColor boidColor = RGBAColor(255,0,0));
 	/// @brief Destructor
-	virtual ~ArenaBoid();
+	virtual ~Player();
 
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
@@ -48,4 +48,4 @@ private:
 	float speed = 3;
 };
 
-#endif /* ARENA_BOID_H */
+#endif /* PLAYER_H */
