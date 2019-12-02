@@ -6,8 +6,11 @@
 
 #include <fstream>
 #include <sstream>
+#include <vector>
+
 
 #include "myscene.h"
+
  
 MyScene::MyScene() : Scene()
 {
@@ -16,6 +19,7 @@ MyScene::MyScene() : Scene()
 
 	arenaBoidA = new ArenaBoid(RGBAColor(255,0,0));
 	this->addChild(arenaBoidA);
+	
 
 	arenaBoidB = new ArenaBoid(RGBAColor(0, 255, 0));
 	this->addChild(arenaBoidB);
@@ -32,4 +36,5 @@ void MyScene::update(float deltaTime)
 {
 	arenaBoidA->handleInput(1);
 	arenaBoidB->handleInput(2);
+
 }

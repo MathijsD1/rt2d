@@ -179,6 +179,8 @@ IF(MAKE_GAME)
 		game/myscene.h
     game/arenaboid.cpp
     game/arenaboid.h
+    game/random.cpp
+    game/random.h
 	)
 	target_link_libraries(game
 		${ALL_GRAPHICS_LIBS}

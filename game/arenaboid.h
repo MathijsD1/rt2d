@@ -3,14 +3,17 @@
 #define ARENABOID_H
 
 #include <rt2d/entity.h>
+
 #include "color.h"
+#include "random.h"
+
 
 
 class ArenaBoid : public Entity
 {
 public:
 	/// @brief Constructor
-	ArenaBoid(RGBAColor boidColor);
+	ArenaBoid(RGBAColor boidColor = RGBAColor(255,0,0));
 	/// @brief Destructor
 	virtual ~ArenaBoid();
 
@@ -42,6 +45,7 @@ private:
 	float heading = 0;
 	float r = 2;
 	float rotationSpeed = 8;
+	float speed = 3;
 };
 
 #endif /* ARENA_BOID_H */

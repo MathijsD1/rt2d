@@ -5,13 +5,16 @@ float dTime;
 
 
 
-ArenaBoid::ArenaBoid(RGBAColor boidColor = RGBAColor(255,255,255)) : Entity()
+ArenaBoid::ArenaBoid(RGBAColor boidColor) : Entity()
 {
-	pos = Point(SWIDTH/2, SHEIGHT/2);
+	pos = Point(Random().getRandomBetween(0, SWIDTH), Random().getRandomBetween(0, SHEIGHT));
 
 	this->addSprite("assets/boid.tga");
-	this->sprite()->filter(2);
+	this->sprite()->filter(1);
 	this->sprite()->color = boidColor;
+
+	float scale = 0.85f;
+	this->scale = Point3(scale, scale, scale);
 
 
 	vel = Vector2(0, 0);
@@ -26,8 +29,6 @@ ArenaBoid::~ArenaBoid()
 
 void ArenaBoid::handleInput(float inputSet)
 {
-	float speed = 2.5f;
-
 	//Default input
 	if (inputSet == 1) 
 	{
@@ -73,8 +74,7 @@ void ArenaBoid::update(float deltaTime)
 
 	vel.limit(topSpeed);
 
-	float a = heading - 89.5f;
-	this->rotation = Point3(this->rotation.x,this->rotation.y, a);
+	this->rotation = Point3(this->rotation.x,this->rotation.y, heading);
 
 	pos += vel;
 
