@@ -12,6 +12,7 @@
 #include <rt2d/scene.h>
 
 #include "player.h"
+#include "collider.h"
 
 /// @brief The MyScene class is the Scene implementation.
 class MyScene : public Scene
@@ -28,7 +29,6 @@ public:
 	virtual void update(float deltaTime);
 
 private:
-	/// @brief the player controlled spaceship.
 	Player* playerA;
 	Player* playerB;
 

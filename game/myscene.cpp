@@ -1,9 +1,3 @@
-/**
- * This class describes MyScene behavior.
- *
- * Copyright 2015 Your Name <you@yourhost.com>
- */
-
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -17,11 +11,16 @@ MyScene::MyScene() : Scene()
 	// start the timer.
 	t.start();
 
+	//Create Player A.
 	playerA = new Player(RGBAColor(255,0,0));
-	this->addChild(playerA);
-	
 
+	//Add Player A to the Scene.
+	this->addChild(playerA);
+
+	//Create Player B.
 	playerB = new Player(RGBAColor(0, 255, 0));
+
+	//Add Player B to the Scene.
 	this->addChild(playerB);
 }
 
@@ -34,7 +33,14 @@ MyScene::~MyScene()
 
 void MyScene::update(float deltaTime)
 {
+	//Input with WASD for Player A.
 	playerA->handleInput(1);
+
+	//Input with NUM Keys for Player B.
 	playerB->handleInput(2);
 
+	//Check if the players have collided with each other
+	if (Collider::circle2circle(playerA->circleCollisionShape, playerB->circleCollisionShape)) {
+		std::cout << "Players have collided" << std::endl;
+	}
 }

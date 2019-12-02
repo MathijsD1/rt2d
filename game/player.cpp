@@ -4,7 +4,6 @@
 float dTime;
 
 
-
 Player::Player(RGBAColor boidColor) : Entity()
 {
 	pos = Point(Random().getRandomBetween(0, SWIDTH), Random().getRandomBetween(0, SHEIGHT));
@@ -22,6 +21,16 @@ Player::Player(RGBAColor boidColor) : Entity()
 
 	std::cout << "Created new player" << std::endl;
 
+	RGBAColor circleColor = boidColor;
+	circleColor.a = 20;
+
+	collisionShape = new Shape();
+	collisionShape->position = this->position;
+	Line c1;
+	c1.color = circleColor;
+	c1.createCircle(collisionSpan, 20);
+	collisionShape->addLine(&c1);
+	this->addChild(collisionShape);
 }
 
 Player::~Player()
@@ -62,6 +71,8 @@ void Player::handleInput(float inputSet)
 
 void Player::update(float deltaTime)
 {
+	circleCollisionShape = Circle(this->position.x, this->position.y, collisionSpan);
+
 	float width = SWIDTH;
 	float height = SHEIGHT;
 

@@ -14,7 +14,7 @@ OPTION(MAKE_NOISE "Make Perlin Noise application" OFF)
 OPTION(MAKE_GEOMETRIC "Make GeoMetric application" OFF)
 OPTION(MAKE_SHADY "Make custom Shader application" OFF)
 OPTION(MAKE_WOLFENSTEIN "Make Wolfenstein3D raycasting application" OFF)
-OPTION(MAKE_COLLISION "Make Collision application" OFF)
+OPTION(MAKE_COLLISION "Make Collision application" ON)
 OPTION(MAKE_DEBUGDRAW "Make DebugDraw application" OFF)
 OPTION(MAKE_RAYCAST "Make Raycast application" OFF)
 
@@ -181,6 +181,9 @@ IF(MAKE_GAME)
     game/player.h
     game/random.cpp
     game/random.h
+    game/shape.cpp
+    game/shape.h
+	game/collider.h
 	)
 	target_link_libraries(game
 		${ALL_GRAPHICS_LIBS}

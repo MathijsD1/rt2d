@@ -6,6 +6,8 @@
 
 #include "color.h"
 #include "random.h"
+#include "collider.h"
+#include "shape.h"
 
 
 
@@ -29,10 +31,14 @@ public:
 	void turn(float a);
 	/// @brief Calculates the force and then calls applyForce to apply the force.
 	void thrust(float speed);
-	///
+	/// @brief Prevents the player from going out of screen.
 	void wrapEdges(float sWidth, float sHeight);
 
+	//Used for Particle System later.
 	bool thrusting = false;
+
+	/// @brief Collision Shape used to detect if the player has collided with other colliders.
+	Circle circleCollisionShape = Circle(0, 0, 32);;
 
 private:
 
@@ -40,12 +46,16 @@ private:
 	Vector2 vel;
 	Vector2 accel;
 
+	Shape* collisionShape;
+
 	float damping = 0.9955f;
 	float topSpeed = 3;
 	float heading = 0;
 	float r = 2;
 	float rotationSpeed = 8;
 	float speed = 3;
+
+	int collisionSpan = 18;
 };
 
 #endif /* PLAYER_H */
