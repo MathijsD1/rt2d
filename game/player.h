@@ -40,10 +40,11 @@ public:
 	/// @brief Collision Shape used to detect if the player has collided with other colliders.
 	Circle circleCollisionShape = Circle(0, 0, 32);;
 
+	Vector2 vel;
+
 private:
 
 	Vector2 pos;
-	Vector2 vel;
 	Vector2 accel;
 
 	Shape* collisionShape;

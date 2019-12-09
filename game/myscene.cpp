@@ -5,7 +5,7 @@
 
 #include "myscene.h"
 
- 
+
 MyScene::MyScene() : Scene()
 {
 	// start the timer.
@@ -38,9 +38,4 @@ void MyScene::update(float deltaTime)
 
 	//Input with NUM Keys for Player B.
 	playerB->handleInput(2);
-
-	//Check if the players have collided with each other
-	if (Collider::circle2circle(playerA->circleCollisionShape, playerB->circleCollisionShape)) {
-		std::cout << "Players have collided" << std::endl;
-	}
 }
