@@ -26,6 +26,7 @@
 
 #define WINDOWNAME "RT2D" ///< The window name
 
+// Default values are 0.1f
 #define CLEARCOLOR_RED 0.1f ///< The red component of the color of the window
 #define CLEARCOLOR_GREEN 0.1f ///< The green component of the color of the window
 #define CLEARCOLOR_BLUE 0.1f ///< The blue component of the color of the window

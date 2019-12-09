@@ -9,10 +9,10 @@ Player::Player(RGBAColor boidColor) : Entity()
 	pos = Point(Random().getRandomBetween(0, SWIDTH), Random().getRandomBetween(0, SHEIGHT));
 
 	this->addSprite("assets/player.tga");
-	this->sprite()->filter(1);
+	this->sprite()->filter(0);
 	this->sprite()->color = boidColor;
 
-	float scale = 1.3f;
+	float scale = 2;
 	this->scale = Point3(scale, scale, scale);
 
 
@@ -22,13 +22,13 @@ Player::Player(RGBAColor boidColor) : Entity()
 	std::cout << "Created new player" << std::endl;
 
 	RGBAColor circleColor = boidColor;
-	circleColor.a = 20;
+	circleColor.a = 30;
 
 	collisionShape = new Shape();
 	collisionShape->position = this->position;
 	Line c1;
 	c1.color = circleColor;
-	c1.createCircle(collisionSpan, 20);
+	c1.createCircle(collisionSpan, 100);
 	collisionShape->addLine(&c1);
 	this->addChild(collisionShape);
 }

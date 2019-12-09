@@ -13,6 +13,8 @@
 
 #include "player.h"
 #include "collider.h"
+#include "canvas.h"
+#include "pickup.h"
 
 /// @brief The MyScene class is the Scene implementation.
 class MyScene : public Scene
@@ -23,6 +25,8 @@ public:
 	/// @brief Destructor
 	virtual ~MyScene();
 
+	void updatePickups(float deltaTime);
+
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
 	/// @return void
@@ -31,6 +35,8 @@ public:
 private:
 	Player* playerA;
 	Player* playerB;
+
+	std::vector<Pickup*> pickups;
 
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;

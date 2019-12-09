@@ -184,6 +184,8 @@ IF(MAKE_GAME)
     game/shape.cpp
     game/shape.h
 	game/collider.h
+	game/pickup.cpp
+	game/pickup.h
 	)
 	target_link_libraries(game
 		${ALL_GRAPHICS_LIBS}

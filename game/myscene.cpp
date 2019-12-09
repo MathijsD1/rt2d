@@ -5,9 +5,11 @@
 
 #include "myscene.h"
 
+float delay = 0.1f;
 
 MyScene::MyScene() : Scene()
 {
+
 	// start the timer.
 	t.start();
 
@@ -22,6 +24,9 @@ MyScene::MyScene() : Scene()
 
 	//Add Player B to the Scene.
 	this->addChild(playerB);
+
+	Pickup* pickup = new Pickup();
+	this->addChild(pickup);
 }
 
 
@@ -33,9 +38,26 @@ MyScene::~MyScene()
 
 void MyScene::update(float deltaTime)
 {
+	updatePickups(deltaTime);
+
 	//Input with WASD for Player A.
 	playerA->handleInput(1);
 
 	//Input with NUM Keys for Player B.
 	playerB->handleInput(2);
 }
+
+void MyScene::updatePickups(float deltaTime) 
+{
+	delay -= deltaTime;
+
+	if (delay < 0) 
+	{
+		Pickup* pickup = new Pickup();
+		this->addChild(pickup);
+
+		delay = 0.1f;
+	}
+}
+
+

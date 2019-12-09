@@ -10,17 +10,17 @@ class Random
 public:
 	/// @brief Constructor
 	Random();
-
-	static float getRandomBetween(float min, float max) 
+	static float getRandomBetween(float min, float max)
 	{
 		std::random_device dev;
 		std::mt19937 rng(dev());
 		std::uniform_int_distribution<std::mt19937::result_type> dist6(min, max);
 
-		return dist6(rng);
+		return (float)dist6(rng);
 	};
 
 private:
+
 };
 
 #endif /* RANDOM_H */

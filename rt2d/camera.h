@@ -24,6 +24,7 @@
 
 #include <rt2d/vectorx.h>
 
+
 /**
  * @brief The Camera class handles the concept of having a Camera in your Scene.
  */
