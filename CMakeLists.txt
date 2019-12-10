@@ -186,6 +186,10 @@ IF(MAKE_GAME)
 	game/collider.h
 	game/pickup.cpp
 	game/pickup.h
+	game/weaponpickup.cpp
+	game/weaponpickup.h
+	game/healthpickup.cpp
+	game/healthpickup.h
 	)
 	target_link_libraries(game
 		${ALL_GRAPHICS_LIBS}

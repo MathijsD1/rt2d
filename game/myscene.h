@@ -11,10 +11,10 @@
 
 #include <rt2d/scene.h>
 
+#include "pickups.h"
 #include "player.h"
 #include "collider.h"
 #include "canvas.h"
-#include "pickup.h"
 
 /// @brief The MyScene class is the Scene implementation.
 class MyScene : public Scene

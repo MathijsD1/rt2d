@@ -24,9 +24,6 @@ MyScene::MyScene() : Scene()
 
 	//Add Player B to the Scene.
 	this->addChild(playerB);
-
-	Pickup* pickup = new Pickup();
-	this->addChild(pickup);
 }
 
 
@@ -53,10 +50,26 @@ void MyScene::updatePickups(float deltaTime)
 
 	if (delay < 0) 
 	{
-		Pickup* pickup = new Pickup();
-		this->addChild(pickup);
+		if (pickups.size() < 8)
+		{
+			int randomPickupValue = Random().getRandomBetween(0, 1);
 
-		delay = 0.1f;
+			if (randomPickupValue == 0) {
+				Pickup* pickup = new WeaponPickup();
+				this->addChild(pickup);
+
+				pickups.push_back(pickup);
+			}
+
+			if (randomPickupValue == 1) {
+				Pickup* pickup = new HealthPickup();
+				this->addChild(pickup);
+
+				pickups.push_back(pickup);
+			}
+
+			delay = 0.1f;
+		}
 	}
 }
 
