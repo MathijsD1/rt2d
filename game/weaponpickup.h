@@ -9,6 +9,7 @@ public:
 	WeaponPickup();
 
 	void update(float deltaTime);
+	virtual void use(Player* p);
 
 private:
 

@@ -17,3 +17,7 @@ void Pickup::updateCollider()
 {
 	circleCollisionShape = Circle(this->position.x, this->position.y, collisionSpan);
 }
+
+void Pickup::use(Player* p) {
+	std::cout << "DEFAULT PICKUP USE " << std::endl;
+}

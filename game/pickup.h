@@ -5,12 +5,14 @@
 #include "shape.h"
 #include "collider.h"
 #include "random.h"
+#include "player.h"
 
 class Pickup : public Entity
 {
 public:
 	Pickup();
 	void updateCollider();
+	virtual void use(Player* p);
 
 	Circle circleCollisionShape = Circle(0, 0, 32);
 private:

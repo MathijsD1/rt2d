@@ -13,3 +13,8 @@ void HealthPickup::update(float deltaTime)
 {
 
 }
+
+void HealthPickup::use(Player* p) {
+
+	p->heal(healAmount);
+}

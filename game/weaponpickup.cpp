@@ -13,3 +13,7 @@ void WeaponPickup::update(float deltaTime)
 {
 
 }
+
+void WeaponPickup::use(Player* p) {
+	std::cout << "WEAPON PICKUP USE" << std::endl;
+}

@@ -14,7 +14,7 @@ int main( void )
 	MyScene* myscene = new MyScene();
 	while(myscene->isRunning()) {
 		core.run(myscene);
-		core.showFrameRate(5);
+		//core.showFrameRate(5);
 	}
 	//core.cleanup();
 	delete myscene;

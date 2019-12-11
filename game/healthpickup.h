@@ -10,8 +10,11 @@ public:
 
 	void update(float deltaTime);
 
+	virtual void use(Player* p);
+
 private:
 
+	float healAmount = 20;
 };
 
 #endif /* HEALTHPICKUP_H */

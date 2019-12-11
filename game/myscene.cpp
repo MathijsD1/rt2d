@@ -79,9 +79,29 @@ void MyScene::updatePickups(float deltaTime)
 		x->updateCollider();
 
 		//Player collision detection with Pickups.
-		if (Collider::circle2circle(playerA->circleCollisionShape, x->circleCollisionShape) || Collider::circle2circle(playerB->circleCollisionShape, x->circleCollisionShape)) {
+		if (Collider::circle2circle(playerA->circleCollisionShape, x->circleCollisionShape)) {
 			
 			Pickup* p = (Pickup*)x;
+
+			//Activate the pickup
+			p->use(playerA);
+
+			//Remove the pickup from the scene
+			this->removeChild(p);
+
+			//Remove it from the vector
+			pickups.erase(pickups.begin() + currentPickup);
+
+			//Deconstruct
+			delete p;
+		}
+
+		if (Collider::circle2circle(playerB->circleCollisionShape, x->circleCollisionShape)) {
+
+			Pickup* p = (Pickup*)x;
+
+			//Activate the pickup
+			p->use(playerB);
 
 			//Remove the pickup from the scene
 			this->removeChild(p);

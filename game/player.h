@@ -33,6 +33,47 @@ public:
 	/// @brief Prevents the player from going out of screen.
 	void wrapEdges(float sWidth, float sHeight);
 
+	void damage(float amount) {
+
+		if (amount < 0) {
+			amount *= -1;
+		}
+
+		health -= amount;
+
+		if (health < 0) {
+			health = 0;
+		}
+	}
+
+	void heal(float amount) {
+
+		if (amount < 0) {
+			amount *= -1;
+		}
+
+		health += amount;
+
+		if (health > 100) {
+			health = 100;
+		}
+	}
+
+	bool isAlive() 
+	{
+		if (health > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	float getHealth()
+	{
+		return health;
+	}
+
 	//Used for Particle System later.
 	bool thrusting = false;
 
@@ -54,6 +95,7 @@ private:
 	float r = 2;
 	float rotationSpeed = 8;
 	float speed = 3;
+	float health = 100;
 
 	int collisionSpan = 18;
 };
