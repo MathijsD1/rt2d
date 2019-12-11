@@ -36,6 +36,11 @@ private:
 	Player* playerA;
 	Player* playerB;
 
+	int pickupLimit = 8;
+
+	float pickupSpawnDelay = 0.3f;
+	float pickupDefaultDelay = 0.3f;
+
 	std::vector<Pickup*> pickups;
 
 	/// @brief a Timer to rotate the color every n seconds

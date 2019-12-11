@@ -2,19 +2,18 @@
 
 float scaleAmount = 1.6f;
 
-Pickup::Pickup() 
-{
-	this->addSprite("assets/pickup_base.tga");
-	this->sprite()->color = RGBAColor(0, 255, 0);
-	this->sprite()->filter(0);
-	
+Pickup::Pickup() : Entity()
+{	
 	this->position = Vector2(Random().getRandomBetween(0, SWIDTH), Random().getRandomBetween(0, SHEIGHT));
+
+	std::cout << "Created new pickup!" << std::endl;
 }
 
-void Pickup::update(float deltaTime)
+void Pickup::update(float deltaTime) {
+
+}
+
+void Pickup::updateCollider()
 {
-	if (this->scale.x < scaleAmount)
-	{
-		this->scale = this->scale += deltaTime;
-	}
+	circleCollisionShape = Circle(this->position.x, this->position.y, collisionSpan);
 }

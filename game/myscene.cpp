@@ -2,10 +2,7 @@
 #include <sstream>
 #include <vector>
 
-
 #include "myscene.h"
-
-float delay = 0.1f;
 
 MyScene::MyScene() : Scene()
 {
@@ -46,11 +43,13 @@ void MyScene::update(float deltaTime)
 
 void MyScene::updatePickups(float deltaTime) 
 {
-	delay -= deltaTime;
+	if (pickups.size() < pickupLimit) {
+		pickupSpawnDelay -= deltaTime;
+	}
 
-	if (delay < 0) 
+	if (pickupSpawnDelay < 0) 
 	{
-		if (pickups.size() < 8)
+		if (pickups.size() < pickupLimit)
 		{
 			int randomPickupValue = Random().getRandomBetween(0, 1);
 
@@ -68,9 +67,36 @@ void MyScene::updatePickups(float deltaTime)
 				pickups.push_back(pickup);
 			}
 
-			delay = 0.1f;
+			pickupSpawnDelay = pickupDefaultDelay;
 		}
 	}
+
+	//Pickup collision detection
+
+	int currentPickup = 0;
+	for (auto&& x : pickups)
+	{
+		x->updateCollider();
+
+		//Player collision detection with Pickups.
+		if (Collider::circle2circle(playerA->circleCollisionShape, x->circleCollisionShape) || Collider::circle2circle(playerB->circleCollisionShape, x->circleCollisionShape)) {
+			
+			Pickup* p = (Pickup*)x;
+
+			//Remove the pickup from the scene
+			this->removeChild(p);
+
+			//Remove it from the vector
+			pickups.erase(pickups.begin() + currentPickup);
+
+			//Deconstruct
+			delete p;
+		}
+
+		currentPickup++;
+	}
+
+	currentPickup = pickups.size();
 }
 
 

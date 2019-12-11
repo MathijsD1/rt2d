@@ -10,10 +10,13 @@ class Pickup : public Entity
 {
 public:
 	Pickup();
+	void updateCollider();
 
 	Circle circleCollisionShape = Circle(0, 0, 32);
 private:
 	Shape* collisionShape;
+
+	int collisionSpan = 18;
 
 	void update(float deltaTime);
 
