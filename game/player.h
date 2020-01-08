@@ -14,7 +14,7 @@ class Player : public Entity
 {
 public:
 	/// @brief Constructor
-	Player(RGBAColor boidColor = RGBAColor(255,0,0));
+	Player(RGBAColor playerColor = RGBAColor(255,0,0));
 	/// @brief Destructor
 	virtual ~Player();
 
@@ -89,13 +89,14 @@ private:
 
 	Shape* collisionShape;
 
-	float damping = 0.9955f;
-	float topSpeed = 3;
+	float damping = 1;
+	float topSpeed = 300;
 	float heading = 0;
 	float r = 2;
 	float rotationSpeed = 8;
-	float speed = 3;
+	float speed = 300;
 	float health = 100;
+	float dTime;
 
 	int collisionSpan = 18;
 };

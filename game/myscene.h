@@ -15,6 +15,7 @@
 #include "player.h"
 #include "collider.h"
 #include "canvas.h"
+#include "asteroid.h"
 
 /// @brief The MyScene class is the Scene implementation.
 class MyScene : public Scene
@@ -35,6 +36,8 @@ public:
 private:
 	Player* playerA;
 	Player* playerB;
+
+	Asteroid* asteroidA;
 
 	int pickupLimit = 8;
 

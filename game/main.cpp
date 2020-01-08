@@ -1,5 +1,4 @@
 #include <rt2d/core.h>
-
 #include "myscene.h"
 
 /// @brief main entry point
@@ -10,6 +9,7 @@ int main( void )
 
 	// Scene01
 	MyScene* myscene = new MyScene(); // create Scene on the heap
+
 	while(myscene->isRunning()) { // check status of Scene every frame
 		core.run(myscene); // update and render the current scene
 		core.showFrameRate(1); // show framerate in output every n seconds

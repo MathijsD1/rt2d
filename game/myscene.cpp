@@ -6,9 +6,14 @@
 
 MyScene::MyScene() : Scene()
 {
-
 	// start the timer.
 	t.start();
+
+	asteroidA = new Asteroid();
+
+	this->addChild(asteroidA);
+
+	asteroidA->position = Vector2(SWIDTH / 2, SHEIGHT / 2);
 
 	//Create Player A.
 	playerA = new Player(RGBAColor(255,0,0));
@@ -118,5 +123,4 @@ void MyScene::updatePickups(float deltaTime)
 
 	currentPickup = pickups.size();
 }
-
 

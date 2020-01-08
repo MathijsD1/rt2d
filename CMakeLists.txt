@@ -190,6 +190,8 @@ IF(MAKE_GAME)
 	game/weaponpickup.h
 	game/healthpickup.cpp
 	game/healthpickup.h
+	game/asteroid.cpp
+	game/asteroid.h
 	)
 	target_link_libraries(game
 		${ALL_GRAPHICS_LIBS}

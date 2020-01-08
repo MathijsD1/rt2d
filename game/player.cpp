@@ -1,16 +1,12 @@
 #include "player.h"
 
-//delta time
-float dTime;
-
-
-Player::Player(RGBAColor boidColor) : Entity()
+Player::Player(RGBAColor playerColor) : Entity()
 {
 	pos = Point(Random().getRandomBetween(0, SWIDTH), Random().getRandomBetween(0, SHEIGHT));
 
 	this->addSprite("assets/player.tga");
 	this->sprite()->filter(0);
-	this->sprite()->color = boidColor;
+	this->sprite()->color = playerColor;
 
 	float scale = 2;
 	this->scale = Point3(scale, scale, scale);
@@ -19,9 +15,7 @@ Player::Player(RGBAColor boidColor) : Entity()
 	vel = Vector2(0, 0);
 	accel = Vector2(0, 0);
 
-	std::cout << "Created new player" << std::endl;
-
-	RGBAColor circleColor = boidColor;
+	RGBAColor circleColor = playerColor;
 	circleColor.a = 30;
 
 	collisionShape = new Shape();
@@ -71,6 +65,8 @@ void Player::handleInput(float inputSet)
 
 void Player::update(float deltaTime)
 {
+	dTime = deltaTime;
+
 	circleCollisionShape = Circle(this->position.x, this->position.y, collisionSpan);
 
 	float width = SWIDTH;
@@ -78,18 +74,17 @@ void Player::update(float deltaTime)
 
 	wrapEdges(width, height);
 
-	dTime = deltaTime;
 
 	this->position = pos;
 
-	vel += accel;
+	vel += accel * dTime;
 	vel *= damping;
 
 	vel.limit(topSpeed);
 
 	this->rotation = Point3(this->rotation.x,this->rotation.y, heading);
 
-	pos += vel;
+	pos += vel * dTime;
 
 	accel *= 0;
 }
@@ -109,7 +104,7 @@ void Player::thrust(float speed = 1)
 {
 	float angle = heading - PI / 2;
 	Vector2 force = Vector2(cos(angle), sin(angle));
-	force *= speed * dTime;
+	force *= speed;
 	applyForce(force);
 	thrusting = true;
 }
