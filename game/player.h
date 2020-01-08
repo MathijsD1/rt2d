@@ -89,12 +89,12 @@ private:
 
 	Shape* collisionShape;
 
-	float damping = 1;
-	float topSpeed = 300;
+	float damping = 0.995f;
+	float topSpeed = 9999;
 	float heading = 0;
 	float r = 2;
 	float rotationSpeed = 8;
-	float speed = 300;
+	float speed = 1200;
 	float health = 100;
 	float dTime;
 

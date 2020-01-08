@@ -1,5 +1,5 @@
 #include <rt2d/core.h>
-#include "myscene.h"
+#include "gamescene.h"
 
 /// @brief main entry point
 int main( void )
@@ -8,7 +8,7 @@ int main( void )
 	Core core;
 
 	// Scene01
-	MyScene* myscene = new MyScene(); // create Scene on the heap
+	GameScene* myscene = new GameScene(); // create Scene on the heap
 
 	while(myscene->isRunning()) { // check status of Scene every frame
 		core.run(myscene); // update and render the current scene

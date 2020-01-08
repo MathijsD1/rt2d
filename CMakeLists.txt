@@ -175,8 +175,8 @@ ENDIF()
 IF(MAKE_GAME)
 	add_executable(game
 		game/main.cpp
-		game/myscene.cpp
-		game/myscene.h
+		game/gamescene.cpp
+		game/gamescene.h
     game/player.cpp
     game/player.h
     game/random.cpp

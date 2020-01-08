@@ -2,9 +2,9 @@
 #include <sstream>
 #include <vector>
 
-#include "myscene.h"
+#include "gamescene.h"
 
-MyScene::MyScene() : Scene()
+GameScene::GameScene() : Scene()
 {
 	// start the timer.
 	t.start();
@@ -29,13 +29,13 @@ MyScene::MyScene() : Scene()
 }
 
 
-MyScene::~MyScene()
+GameScene::~GameScene()
 {
 	delete playerA;
 	delete playerB;
 }
 
-void MyScene::update(float deltaTime)
+void GameScene::update(float deltaTime)
 {
 	updatePickups(deltaTime);
 
@@ -46,7 +46,7 @@ void MyScene::update(float deltaTime)
 	playerB->handleInput(2);
 }
 
-void MyScene::updatePickups(float deltaTime) 
+void GameScene::updatePickups(float deltaTime)
 {
 	if (pickups.size() < pickupLimit) {
 		pickupSpawnDelay -= deltaTime;

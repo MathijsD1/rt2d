@@ -6,8 +6,8 @@
  * @brief description of MyScene behavior.
  */
 
-#ifndef MYSCENE_H
-#define MYSCENE_H
+#ifndef GAMESCENE_H
+#define GAMESCENE_H
 
 #include <rt2d/scene.h>
 
@@ -18,13 +18,13 @@
 #include "asteroid.h"
 
 /// @brief The MyScene class is the Scene implementation.
-class MyScene : public Scene
+class GameScene : public Scene
 {
 public:
 	/// @brief Constructor
-	MyScene();
+	GameScene();
 	/// @brief Destructor
-	virtual ~MyScene();
+	virtual ~GameScene();
 
 	void updatePickups(float deltaTime);
 
@@ -50,4 +50,4 @@ private:
 	Timer t;
 };
 
-#endif /* SCENE00_H */
+#endif /* GAMESCENE_H */
