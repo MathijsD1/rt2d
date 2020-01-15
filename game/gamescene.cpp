@@ -39,6 +39,7 @@ GameScene::~GameScene()
 void GameScene::update(float deltaTime)
 {
 	updatePickups(deltaTime);
+	updateProjectiles();
 
 	//Input with WASD for Player A.
 	playerA->handleInput(1);
@@ -123,6 +124,40 @@ void GameScene::updatePickups(float deltaTime)
 	}
 
 	currentPickup = pickups.size();
+}
+
+void GameScene::updateProjectiles() 
+{
+	/*
+	int currentProjectile = 0;
+	for (auto x : projectiles) 
+	{
+		if (x->isOutOfScreen) {
+			Projectile* p = (Projectile*)x;
+
+			this->removeChild(p);
+			projectiles.erase(projectiles.begin() + currentProjectile);
+			delete p;
+		}
+
+		currentProjectile++;
+	}*/
+
+	for (int i = projectiles.size(); i--; )
+	{
+		Projectile* p = projectiles.at(i);
+
+		if (p->isOutOfScreen) {
+			this->removeChild(p);
+			projectiles.erase(projectiles.begin() + i);
+			delete p;
+		}
+	}
+}
+
+void GameScene::addProjectileToList(Projectile* p) 
+{
+	projectiles.push_back(p);
 }
 
 GameScene* GameScene::getInstance() 

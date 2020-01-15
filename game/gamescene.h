@@ -7,6 +7,7 @@
 #include "canvas.h"
 #include "asteroid.h"
 #include "player.h"
+#include "projectile.h"
 
 
 /// @brief The GameScene class is the Scene implementation.
@@ -19,6 +20,8 @@ public:
 	virtual ~GameScene();
 
 	void updatePickups(float deltaTime);
+	void updateProjectiles();
+	void addProjectileToList(Projectile* p);
 
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
@@ -42,6 +45,7 @@ private:
 	float pickupDefaultDelay = 0.3f;
 
 	std::vector<Pickup*> pickups;
+	std::vector<Projectile*> projectiles;
 
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;
