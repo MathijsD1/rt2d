@@ -1,7 +1,10 @@
 #include "player.h"
 
+
 Player::Player(RGBAColor playerColor) : Entity()
 {
+	this->heading = 0;
+
 	pos = Point(Random().getRandomBetween(0, SWIDTH), Random().getRandomBetween(0, SHEIGHT));
 
 	this->addSprite("assets/player.tga");
@@ -46,6 +49,9 @@ void Player::handleInput(float inputSet)
 		if (input()->getKey(KeyCode::W)) {
 			thrust(speed);
 		}
+		if (input()->getKey(KeyCode::Space) && this->weapon != nullptr) {
+			this->weapon->fire(this->heading, this->pos);
+		}
 	}
 
 	//Keypad input
@@ -59,6 +65,9 @@ void Player::handleInput(float inputSet)
 		}
 		if (input()->getKey(KeyCode::KeyPad5)) {
 			thrust(speed);
+		}
+		if (input()->getKey(KeyCode::KeyPad2) && this->weapon != nullptr) {
+			this->weapon->fire(this->heading, this->pos);
 		}
 	}
 }
@@ -126,5 +135,22 @@ void Player::wrapEdges(float sWidth, float sHeight) {
 
 	if (pos.y < -buffer) {
 		pos.y = sHeight + buffer;
+	}
+}
+
+void Player::addWeapon(Weapon* weaponToAdd) {
+
+	this->weapon = weaponToAdd;
+	this->weapon->position += Point3(0, 5);
+
+	this->addChild(weapon);
+}
+
+void Player::removeWeapon() 
+{
+	if (weapon != nullptr) 
+	{
+		this->removeChild(weapon);
+		delete this->weapon;
 	}
 }

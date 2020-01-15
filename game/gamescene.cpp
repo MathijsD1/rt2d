@@ -1,8 +1,9 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-
 #include "gamescene.h"
+
+GameScene* GameScene::instance = 0;
 
 GameScene::GameScene() : Scene()
 {
@@ -16,13 +17,13 @@ GameScene::GameScene() : Scene()
 	asteroidA->position = Vector2(SWIDTH / 2, SHEIGHT / 2);
 
 	//Create Player A.
-	playerA = new Player(RGBAColor(255,0,0));
+	playerA = new Player(RGBAColor(0, 255, 255));
 
 	//Add Player A to the Scene.
 	this->addChild(playerA);
 
 	//Create Player B.
-	playerB = new Player(RGBAColor(0, 255, 0));
+	playerB = new Player(RGBAColor(255, 255, 0));
 
 	//Add Player B to the Scene.
 	this->addChild(playerB);
@@ -79,7 +80,7 @@ void GameScene::updatePickups(float deltaTime)
 	//Pickup collision detection
 
 	int currentPickup = 0;
-	for (auto&& x : pickups)
+	for (auto x : pickups)
 	{
 		x->updateCollider();
 
@@ -122,5 +123,15 @@ void GameScene::updatePickups(float deltaTime)
 	}
 
 	currentPickup = pickups.size();
+}
+
+GameScene* GameScene::getInstance() 
+{
+	if (GameScene::instance == 0) 
+	{
+		GameScene::instance = new GameScene();
+	}
+
+	return instance;
 }
 

@@ -1,28 +1,20 @@
-/**
- * Copyright 2015 Your Name <you@yourhost.com>
- *
- * @file myscene.h
- *
- * @brief description of MyScene behavior.
- */
-
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
 #include <rt2d/scene.h>
-
 #include "pickups.h"
-#include "player.h"
 #include "collider.h"
 #include "canvas.h"
 #include "asteroid.h"
+#include "player.h"
 
-/// @brief The MyScene class is the Scene implementation.
+
+/// @brief The GameScene class is the Scene implementation.
 class GameScene : public Scene
 {
 public:
-	/// @brief Constructor
-	GameScene();
+
+	static GameScene* getInstance();
 	/// @brief Destructor
 	virtual ~GameScene();
 
@@ -34,6 +26,11 @@ public:
 	virtual void update(float deltaTime);
 
 private:
+	/// @brief Constructor
+	GameScene();
+
+	static GameScene* instance;
+
 	Player* playerA;
 	Player* playerB;
 
@@ -48,6 +45,7 @@ private:
 
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;
+
 };
 
 #endif /* GAMESCENE_H */

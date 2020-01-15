@@ -15,5 +15,12 @@ void WeaponPickup::update(float deltaTime)
 }
 
 void WeaponPickup::use(Player* p) {
-	std::cout << "WEAPON PICKUP USE" << std::endl;
+
+	//If the player already has a weapon then destroy it.
+	p->removeWeapon();
+
+	//Give the player a new weapon!
+	p->addWeapon(new AutoCannon());
+
+	std::cout << "WEAPON PICKUP USE ON PLAYER INSTANCE: " << p  << std::endl;
 }

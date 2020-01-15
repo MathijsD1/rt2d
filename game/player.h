@@ -3,12 +3,12 @@
 
 #include <rt2d/entity.h>
 
+
 #include "color.h"
 #include "random.h"
 #include "collider.h"
 #include "shape.h"
-
-
+#include "weapon.h"
 
 class Player : public Entity
 {
@@ -32,6 +32,9 @@ public:
 	void thrust(float speed);
 	/// @brief Prevents the player from going out of screen.
 	void wrapEdges(float sWidth, float sHeight);
+
+	void addWeapon(Weapon* weaponToAdd);
+	void removeWeapon();
 
 	void damage(float amount) {
 
@@ -83,11 +86,13 @@ public:
 	Vector2 vel;
 
 private:
+	void updateWeapon();
 
-	Vector2 pos;
-	Vector2 accel;
+	Vector2 pos = Vector2(0,0);
+	Vector2 accel = Vector2(0,0);
 
-	Shape* collisionShape;
+	Shape* collisionShape = 0;
+	Weapon* weapon = 0;
 
 	float damping = 0.995f;
 	float topSpeed = 9999;
@@ -96,7 +101,7 @@ private:
 	float rotationSpeed = 8;
 	float speed = 1200;
 	float health = 100;
-	float dTime;
+	float dTime = 0;
 
 	int collisionSpan = 18;
 };

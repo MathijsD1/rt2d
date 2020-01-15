@@ -19,17 +19,17 @@
 
 
 // screenwidth, screenheight
-#define SWIDTH 1920 ///< The screen width
-#define SHEIGHT 1080 ///< The screen height
+#define SWIDTH 1280 ///< The screen width
+#define SHEIGHT 720 ///< The screen height
 
 #define FULLSCREEN 0 ///< Fullscreen or not
 
 #define WINDOWNAME "RT2D" ///< The window name
 
 // Default values are 0.1f
-#define CLEARCOLOR_RED 0.1f ///< The red component of the color of the window
-#define CLEARCOLOR_GREEN 0.1f ///< The green component of the color of the window
-#define CLEARCOLOR_BLUE 0.1f ///< The blue component of the color of the window
+#define CLEARCOLOR_RED 0.1294117647f ///< The red component of the color of the window
+#define CLEARCOLOR_GREEN 0.01176470588f ///< The green component of the color of the window
+#define CLEARCOLOR_BLUE 0.06666666666f ///< The blue component of the color of the window
 
 // defaultshader for Renderer as fallback if Sprite has no shader defined
 #define SPRITEVERTEXSHADER "shaders/sprite.vert" ///< vertexshader name
@@ -38,7 +38,7 @@
 
 #define VSYNC 0 ///< VSYNC on (1) or off (0)
 
-#define DEFAULTFILTER 3 ///< texture filter
+#define DEFAULTFILTER 1 ///< texture filter
 #define DEFAULTWRAP 1 ///< texture clamping (0=repeat, 1=mirror, 2=clamp)
 
 #ifdef _WIN32

@@ -2,6 +2,7 @@
 #define WEAPONPICKUP_H
 
 #include "pickup.h"
+#include "autocannon.h"
 
 class WeaponPickup : public Pickup
 {
