@@ -50,7 +50,7 @@ void Player::handleInput(float inputSet)
 			thrust(speed);
 		}
 		if (input()->getKey(KeyCode::Space) && this->weapon != nullptr) {
-			this->weapon->fire(this->heading, this->pos);
+			this->weapon->fire(this->heading, this->pos, this->sprite()->color);
 		}
 	}
 
@@ -67,7 +67,7 @@ void Player::handleInput(float inputSet)
 			thrust(speed);
 		}
 		if (input()->getKey(KeyCode::KeyPad2) && this->weapon != nullptr) {
-			this->weapon->fire(this->heading, this->pos);
+			this->weapon->fire(this->heading, this->pos, this->sprite()->color);
 		}
 	}
 }

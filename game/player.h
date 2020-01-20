@@ -86,8 +86,6 @@ public:
 	Vector2 vel;
 
 private:
-	void updateWeapon();
-
 	Vector2 pos = Vector2(0,0);
 	Vector2 accel = Vector2(0,0);
 
@@ -98,7 +96,7 @@ private:
 	float topSpeed = 9999;
 	float heading = 0;
 	float r = 2;
-	float rotationSpeed = 8;
+	float rotationSpeed = 6.5f;
 	float speed = 1200;
 	float health = 100;
 	float dTime = 0;
