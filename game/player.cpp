@@ -32,7 +32,7 @@ Player::Player(RGBAColor playerColor) : Entity()
 
 Player::~Player()
 {
-
+	delete collisionShape;
 }
 
 void Player::handleInput(float inputSet)
@@ -74,6 +74,10 @@ void Player::handleInput(float inputSet)
 
 void Player::update(float deltaTime)
 {
+	if (weapon != nullptr && weapon->ammo <= 0) {
+		removeWeapon();
+	}
+
 	dTime = deltaTime;
 
 	circleCollisionShape = Circle(this->position.x, this->position.y, collisionSpan);
@@ -152,5 +156,6 @@ void Player::removeWeapon()
 	{
 		this->removeChild(weapon);
 		delete this->weapon;
+		weapon = nullptr;
 	}
 }

@@ -81,7 +81,7 @@ public:
 	bool thrusting = false;
 
 	/// @brief Collision Shape used to detect if the player has collided with other colliders.
-	Circle circleCollisionShape = Circle(0, 0, 32);;
+	Circle circleCollisionShape = Circle(0, 0, 32);
 
 	Vector2 vel;
 

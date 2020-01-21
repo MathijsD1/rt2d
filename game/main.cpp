@@ -12,7 +12,7 @@ int main( void )
 
 	while(gameScene->isRunning()) { // check status of Scene every frame
 		core.run(gameScene); // update and render the current scene
-		core.showFrameRate(1); // show framerate in output every n seconds
+		core.showFrameRate(10); // show framerate in output every n seconds
 	}
 	//core.cleanup(); // cleanup ResourceManager (Textures + Meshes, but not Shaders)
 	delete gameScene; // delete Scene and everything in it from the heap to make space for next Scene

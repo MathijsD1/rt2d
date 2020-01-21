@@ -31,11 +31,12 @@ public:
 private:
 	/// @brief Constructor
 	GameScene();
+	void Reset();
 
 	static GameScene* instance;
 
-	Player* playerA;
-	Player* playerB;
+	Player* playerA = nullptr;
+	Player* playerB = nullptr;
 
 	Asteroid* asteroidA;
 

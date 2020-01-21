@@ -10,11 +10,31 @@ GameScene::GameScene() : Scene()
 	// start the timer.
 	t.start();
 
-	asteroidA = new Asteroid();
+	Reset();
+}
 
-	this->addChild(asteroidA);
+void GameScene::Reset() 
+{
+	int currentPickup = 0;
 
-	asteroidA->position = Vector2(SWIDTH / 2, SHEIGHT / 2);
+	for (int i = pickups.size(); i--; )
+	{
+		Pickup* p = pickups.at(i);
+
+		this->removeChild(p);
+		pickups.erase(pickups.begin() + i);
+		delete p;
+	}
+
+	if (playerA != nullptr) {
+		this->removeChild(playerA);
+		delete playerA;
+	}
+
+	if (playerB != nullptr) {
+		this->removeChild(playerB);
+		delete playerB;
+	}
 
 	//Create Player A.
 	playerA = new Player(RGBAColor(0, 255, 255));
@@ -38,14 +58,26 @@ GameScene::~GameScene()
 
 void GameScene::update(float deltaTime)
 {
+	if (input()->getKeyDown(KeyCode::Enter)) {
+		Reset();
+	}
+
 	updatePickups(deltaTime);
 	updateProjectiles();
 
-	//Input with WASD for Player A.
-	playerA->handleInput(1);
+	//// Players
 
-	//Input with NUM Keys for Player B.
-	playerB->handleInput(2);
+	if (playerA->isAlive()) 
+	{
+		//Input with WASD for Player A.
+		playerA->handleInput(1);
+	}
+
+	if (playerB->isAlive())
+	{
+		//Input with WASD for Player A.
+		playerB->handleInput(2);
+	}
 }
 
 void GameScene::updatePickups(float deltaTime)
@@ -146,6 +178,43 @@ void GameScene::updateProjectiles()
 	for (int i = projectiles.size(); i--; )
 	{
 		Projectile* p = projectiles.at(i);
+
+		for (int i = pickups.size(); i--;)
+		{
+			Pickup* pu = pickups.at(i);
+
+			if (Collider::circle2circle(p->circleCollisionShape, pu->circleCollisionShape)) 
+			{
+				//Remove the pickup from the scene
+				this->removeChild(pu);
+
+				//Remove it from the vector
+				pickups.erase(pickups.begin() + i);
+
+				//Deconstruct
+				delete pu;
+			}
+		}
+
+		if (Collider::circle2circle(playerB->circleCollisionShape, p->circleCollisionShape) && p->sprite()->color != playerB->sprite()->color)
+		{
+			playerB->damage(10);
+
+			this->removeChild(p);
+			projectiles.erase(projectiles.begin() + i);
+			delete p;
+			break;
+		}
+
+		if (Collider::circle2circle(playerA->circleCollisionShape, p->circleCollisionShape) && p->sprite()->color != playerA->sprite()->color)
+		{
+			playerA->damage(10);
+
+			this->removeChild(p);
+			projectiles.erase(projectiles.begin() + i);
+			delete p;
+			break;
+		}
 
 		if (p->isOutOfScreen) {
 			this->removeChild(p);
