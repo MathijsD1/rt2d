@@ -58,7 +58,7 @@ GameScene::~GameScene()
 
 void GameScene::update(float deltaTime)
 {
-	if (input()->getKeyDown(KeyCode::Enter)) {
+	if (input()->getKey(KeyCode::Enter)) {
 		Reset();
 	}
 
@@ -72,11 +72,17 @@ void GameScene::update(float deltaTime)
 		//Input with WASD for Player A.
 		playerA->handleInput(1);
 	}
+	else {
+		Reset();
+	}
 
 	if (playerB->isAlive())
 	{
 		//Input with WASD for Player A.
 		playerB->handleInput(2);
+	}
+	else {
+		Reset();
 	}
 }
 
@@ -195,6 +201,7 @@ void GameScene::updateProjectiles()
 				delete pu;
 			}
 		}
+
 
 		if (Collider::circle2circle(playerB->circleCollisionShape, p->circleCollisionShape) && p->sprite()->color != playerB->sprite()->color)
 		{

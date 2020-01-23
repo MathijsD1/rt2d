@@ -93,11 +93,11 @@ private:
 	Weapon* weapon = 0;
 
 	float damping = 0.995f;
-	float topSpeed = 9999;
+	float topSpeed = 1800;
 	float heading = 0;
 	float r = 2;
-	float rotationSpeed = 6.5f;
-	float speed = 1200;
+	float rotationSpeed = 4.5;
+	float speed = 1800;
 	float health = 100;
 	float dTime = 0;
 

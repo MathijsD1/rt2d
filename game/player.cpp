@@ -14,7 +14,6 @@ Player::Player(RGBAColor playerColor) : Entity()
 	float scale = 2;
 	this->scale = Point3(scale, scale, scale);
 
-
 	vel = Vector2(0, 0);
 	accel = Vector2(0, 0);
 
@@ -28,6 +27,13 @@ Player::Player(RGBAColor playerColor) : Entity()
 	c1.createCircle(collisionSpan, 100);
 	collisionShape->addLine(&c1);
 	this->addChild(collisionShape);
+
+	Line l1;
+	l1.color = circleColor;
+	l1.color.a = 112;
+	l1.addPoint(this->position.x, this->position.y, 0);
+	l1.addPoint(this->position.x, this->position.y - 5000, 0);
+	collisionShape->addLine(&l1);
 }
 
 Player::~Player()
@@ -57,16 +63,16 @@ void Player::handleInput(float inputSet)
 	//Keypad input
 	if (inputSet == 2)
 	{
-		if (input()->getKey(KeyCode::KeyPad1)) {
+		if (input()->getKey(KeyCode::Left)) {
 			turn(-rotationSpeed * dTime);
 		}
-		if (input()->getKey(KeyCode::KeyPad3)) {
+		if (input()->getKey(KeyCode::Right)) {
 			turn(rotationSpeed * dTime);
 		}
-		if (input()->getKey(KeyCode::KeyPad5)) {
+		if (input()->getKey(KeyCode::Up)) {
 			thrust(speed);
 		}
-		if (input()->getKey(KeyCode::KeyPad2) && this->weapon != nullptr) {
+		if (input()->getKey(KeyCode::KeyPadEnter) && this->weapon != nullptr) {
 			this->weapon->fire(this->heading, this->pos, this->sprite()->color);
 		}
 	}
