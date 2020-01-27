@@ -21,6 +21,7 @@ public:
 
 	void updatePickups(float deltaTime);
 	void updateProjectiles();
+	void updateAsteroids(float deltaTime);
 	void addProjectileToList(Projectile* p);
 
 	/// @brief update is automatically called every frame
@@ -38,15 +39,17 @@ private:
 	Player* playerA = nullptr;
 	Player* playerB = nullptr;
 
-	Asteroid* asteroidA;
+	Asteroid* asteroidA = nullptr;
 
 	int pickupLimit = 8;
 
 	float pickupSpawnDelay = 0.3f;
 	float pickupDefaultDelay = 0.3f;
+	float asteroidSpawnDelay = 3;
 
 	std::vector<Pickup*> pickups;
 	std::vector<Projectile*> projectiles;
+	std::vector<Asteroid*> asteroids;
 
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;

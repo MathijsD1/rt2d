@@ -92,7 +92,7 @@ private:
 	Shape* collisionShape = 0;
 	Weapon* weapon = 0;
 
-	float damping = 0.995f;
+	float damping = 0.98f;
 	float topSpeed = 1800;
 	float heading = 0;
 	float r = 2;

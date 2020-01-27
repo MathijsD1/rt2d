@@ -9,6 +9,7 @@ Projectile::Projectile() : Entity()
 
 	Line c1;
 	c1.color = this->sprite()->color;
+	c1.color.a = 0;
 	c1.createCircle(8, 100);
 	collisionShape->addLine(&c1);
 	this->addChild(collisionShape);
@@ -25,8 +26,8 @@ void Projectile::update(float deltaTime)
 	float angle = heading - PI / 2;
 	Vector2 force = Vector2(cos(angle), sin(angle));
 
-	force *= 100 * deltaTime;
-	this->position += force * 10000 * deltaTime;
+	force *= 2000 * deltaTime;
+	this->position += force;
 
 	this->rotation = Point3(this->rotation.x, this->rotation.y, heading);
 }

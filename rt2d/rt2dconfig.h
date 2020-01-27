@@ -36,7 +36,7 @@
 #define SPRITEFRAGMENTSHADER "shaders/sprite.frag" ///< fragmentshader name
 #define AUTOGENWHITE "#autogen-white-TGA#" ///< auto generated Texture
 
-#define VSYNC 0 ///< VSYNC on (1) or off (0)
+#define VSYNC 1 ///< VSYNC on (1) or off (0)
 
 #define DEFAULTFILTER 1 ///< texture filter
 #define DEFAULTWRAP 1 ///< texture clamping (0=repeat, 1=mirror, 2=clamp)

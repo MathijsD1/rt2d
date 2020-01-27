@@ -12,6 +12,6 @@ AutoCannon::AutoCannon() : Weapon()
 
 void AutoCannon::update(float deltaTime) 
 {
-	fireRate -= deltaTime * 85;
+	fireRate -= deltaTime * 10;
 }
 

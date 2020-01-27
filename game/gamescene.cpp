@@ -15,7 +15,6 @@ GameScene::GameScene() : Scene()
 
 void GameScene::Reset() 
 {
-	int currentPickup = 0;
 
 	for (int i = pickups.size(); i--; )
 	{
@@ -23,6 +22,24 @@ void GameScene::Reset()
 
 		this->removeChild(p);
 		pickups.erase(pickups.begin() + i);
+		delete p;
+	}
+
+	for (int i = projectiles.size(); i--; )
+	{
+		Projectile* p = projectiles.at(i);
+
+		this->removeChild(p);
+		projectiles.erase(projectiles.begin() + i);
+		delete p;
+	}
+
+	for (int i = asteroids.size(); i--; )
+	{
+		Asteroid* p = asteroids.at(i);
+
+		this->removeChild(p);
+		asteroids.erase(asteroids.begin() + i);
 		delete p;
 	}
 
@@ -62,8 +79,11 @@ void GameScene::update(float deltaTime)
 		Reset();
 	}
 
+	//std::cout << "Player A Health: " << playerA->getHealth() << " Player B Health: " << playerB->getHealth() << std::endl;
+
 	updatePickups(deltaTime);
 	updateProjectiles();
+	updateAsteroids(deltaTime);
 
 	//// Players
 
@@ -166,28 +186,13 @@ void GameScene::updatePickups(float deltaTime)
 
 void GameScene::updateProjectiles() 
 {
-	/*
-	int currentProjectile = 0;
-	for (auto x : projectiles) 
-	{
-		if (x->isOutOfScreen) {
-			Projectile* p = (Projectile*)x;
-
-			this->removeChild(p);
-			projectiles.erase(projectiles.begin() + currentProjectile);
-			delete p;
-		}
-
-		currentProjectile++;
-	}*/
-
 	for (int i = projectiles.size(); i--; )
 	{
 		Projectile* p = projectiles.at(i);
 
-		for (int i = pickups.size(); i--;)
+		for (int b = pickups.size(); b--;)
 		{
-			Pickup* pu = pickups.at(i);
+			Pickup* pu = pickups.at(b);
 
 			if (Collider::circle2circle(p->circleCollisionShape, pu->circleCollisionShape)) 
 			{
@@ -195,10 +200,27 @@ void GameScene::updateProjectiles()
 				this->removeChild(pu);
 
 				//Remove it from the vector
-				pickups.erase(pickups.begin() + i);
+				pickups.erase(pickups.begin() + b);
 
 				//Deconstruct
 				delete pu;
+			}
+		}
+
+		for (int y = asteroids.size(); y--;)
+		{
+			Asteroid* as = asteroids.at(y);
+
+			if (Collider::circle2circle(p->circleCollisionShape, as->circleCollisionShape))
+			{
+				//Remove the pickup from the scene
+				this->removeChild(as);
+
+				//Remove it from the vector
+				asteroids.erase(asteroids.begin() + y);
+
+				//Deconstruct
+				delete as;
 			}
 		}
 
@@ -229,6 +251,46 @@ void GameScene::updateProjectiles()
 			delete p;
 		}
 	}
+}
+
+void GameScene::updateAsteroids(float deltaTime) 
+{
+	asteroidSpawnDelay -= deltaTime;
+
+	if (asteroidSpawnDelay <= 0) {
+		Asteroid* asst = new Asteroid();
+		asteroids.push_back(asst);
+		asst->position = Vector2(0, Random().getRandomBetween(0, 0));
+		this->addChild(asst);
+		asteroidSpawnDelay = 1;
+	}
+
+	for (int i = asteroids.size();i--;)
+	{
+		Asteroid* asteroid = asteroids.at(i);
+
+		if (Collider::circle2circle(asteroid->circleCollisionShape, playerA->circleCollisionShape)) 
+		{
+			playerA->damage(15 * asteroid->scale.x);
+
+			this->removeChild(asteroid);
+			asteroids.erase(asteroids.begin() + i);
+			delete asteroid;
+			break;
+		}
+
+		if (Collider::circle2circle(asteroid->circleCollisionShape, playerB->circleCollisionShape))
+		{
+			playerB->damage(15 * asteroid->scale.x);
+
+			this->removeChild(asteroid);
+			asteroids.erase(asteroids.begin() + i);
+			delete asteroid;
+			break;
+		}
+	}
+
+	std::cout << asteroids.size() << std::endl;
 }
 
 void GameScene::addProjectileToList(Projectile* p) 
