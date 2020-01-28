@@ -198,6 +198,7 @@ IF(MAKE_GAME)
 	game/autocannon.h
 	game/projectile.cpp
 	game/projectile.h
+	game/gameplayelements.h
 	)
 	target_link_libraries(game
 		${ALL_GRAPHICS_LIBS}

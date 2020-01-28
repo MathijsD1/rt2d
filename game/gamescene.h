@@ -5,9 +5,8 @@
 #include "pickups.h"
 #include "collider.h"
 #include "canvas.h"
-#include "asteroid.h"
-#include "player.h"
-#include "projectile.h"
+#include "text.h"
+#include "gameplayelements.h"
 
 
 /// @brief The GameScene class is the Scene implementation.
@@ -41,7 +40,7 @@ private:
 
 	Asteroid* asteroidA = nullptr;
 
-	int pickupLimit = 8;
+	int pickupLimit = 20;
 
 	float pickupSpawnDelay = 0.3f;
 	float pickupDefaultDelay = 0.3f;
@@ -50,6 +49,9 @@ private:
 	std::vector<Pickup*> pickups;
 	std::vector<Projectile*> projectiles;
 	std::vector<Asteroid*> asteroids;
+
+	Text* playerAText = nullptr;
+	Text* playerBText = nullptr;
 
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;

@@ -23,7 +23,7 @@
 #include <glm/gtx/rotate_vector.hpp>
 
 #include <rt2d/vectorx.h>
-
+#include <game/random.h>
 
 /**
  * @brief The Camera class handles the concept of having a Camera in your Scene.

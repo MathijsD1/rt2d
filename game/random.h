@@ -19,6 +19,14 @@ public:
 		return (float)dist6(rng);
 	};
 
+	static float getRandomFloatBetween(float min, float max) 
+	{
+		std::random_device dev;
+		std::mt19937 rng(dev());
+		std::uniform_real_distribution<float> dist6(min, max);
+		return (float)dist6(rng);
+	}
+
 private:
 
 };

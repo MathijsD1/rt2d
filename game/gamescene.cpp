@@ -15,7 +15,6 @@ GameScene::GameScene() : Scene()
 
 void GameScene::Reset() 
 {
-
 	for (int i = pickups.size(); i--; )
 	{
 		Pickup* p = pickups.at(i);
@@ -53,6 +52,16 @@ void GameScene::Reset()
 		delete playerB;
 	}
 
+	if (playerAText != nullptr) {
+		this->removeChild(playerAText);
+		delete playerAText;
+	}
+
+	if (playerBText != nullptr) {
+		this->removeChild(playerBText);
+		delete playerBText;
+	}
+
 	//Create Player A.
 	playerA = new Player(RGBAColor(0, 255, 255));
 
@@ -64,6 +73,16 @@ void GameScene::Reset()
 
 	//Add Player B to the Scene.
 	this->addChild(playerB);
+
+	playerAText = new Text();
+	this->addChild(playerAText);
+	playerAText->scale = Point2(0.3f, 0.3f);
+
+
+	playerBText = new Text();
+	this->addChild(playerBText);
+	playerBText->scale = Point2(0.3f, 0.3f);
+
 }
 
 
@@ -71,11 +90,14 @@ GameScene::~GameScene()
 {
 	delete playerA;
 	delete playerB;
+
+	delete playerAText;
+	delete playerBText;
 }
 
 void GameScene::update(float deltaTime)
 {
-	if (input()->getKey(KeyCode::Enter)) {
+	if (input()->getKeyDown(KeyCode::Enter)) {
 		Reset();
 	}
 
@@ -91,19 +113,27 @@ void GameScene::update(float deltaTime)
 	{
 		//Input with WASD for Player A.
 		playerA->handleInput(1);
+		playerAText->message("Health: " + std::to_string(playerA->getHealth()), playerA->sprite()->color);
+		
 	}
 	else {
-		Reset();
+		playerAText->message("You lost! Press Enter to restart!", RED);
+		playerBText->message("You won! Press Enter to restart!", GREEN);
 	}
 
 	if (playerB->isAlive())
 	{
 		//Input with WASD for Player A.
 		playerB->handleInput(2);
+		playerBText->message("Health: " + std::to_string(playerB->getHealth()), playerB->sprite()->color);
 	}
 	else {
-		Reset();
+		playerAText->message("You won! Press Enter to restart!", GREEN);
+		playerBText->message("You lost! Press Enter to restart!", RED);
 	}
+
+	playerBText->position = Point2(playerB->position.x, playerB->position.y + -50);
+	playerAText->position = Point2(playerA->position.x, playerA->position.y + -50);
 }
 
 void GameScene::updatePickups(float deltaTime)
@@ -289,8 +319,6 @@ void GameScene::updateAsteroids(float deltaTime)
 			break;
 		}
 	}
-
-	std::cout << asteroids.size() << std::endl;
 }
 
 void GameScene::addProjectileToList(Projectile* p) 

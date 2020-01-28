@@ -3,12 +3,12 @@
 
 #include <rt2d/entity.h>
 
-
 #include "color.h"
 #include "random.h"
 #include "collider.h"
 #include "shape.h"
 #include "weapon.h"
+#include "text.h"
 
 class Player : public Entity
 {
@@ -102,6 +102,8 @@ private:
 	float dTime = 0;
 
 	int collisionSpan = 18;
+	
+	Text* healthText = 0;
 };
 
 #endif /* PLAYER_H */

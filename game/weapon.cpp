@@ -19,7 +19,7 @@ void Weapon::fire(float dir, Vector2 firePos, RGBAColor projectileColor) {
 		p->position = firePos;
 		p->sprite()->color = projectileColor;
 
-		p->heading = dir;	
+		p->heading = dir + Random().getRandomFloatBetween(-0.1f, 0.1f);	
 
 		GameScene::getInstance()->addChild(p);
 		GameScene::getInstance()->addProjectileToList(p);

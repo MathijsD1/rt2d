@@ -17,8 +17,12 @@ Player::Player(RGBAColor playerColor) : Entity()
 	vel = Vector2(0, 0);
 	accel = Vector2(0, 0);
 
+	// Color
+
 	RGBAColor circleColor = playerColor;
 	circleColor.a = 30;
+	
+	//Collision shape
 
 	collisionShape = new Shape();
 	collisionShape->position = this->position;
@@ -27,6 +31,8 @@ Player::Player(RGBAColor playerColor) : Entity()
 	c1.createCircle(collisionSpan, 100);
 	collisionShape->addLine(&c1);
 	this->addChild(collisionShape);
+
+	//Collision Shape
 
 	Line l1;
 	l1.color = circleColor;
@@ -39,6 +45,7 @@ Player::Player(RGBAColor playerColor) : Entity()
 Player::~Player()
 {
 	delete collisionShape;
+	delete healthText;
 }
 
 void Player::handleInput(float inputSet)
